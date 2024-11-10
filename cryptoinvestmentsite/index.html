@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trump & Elon Crypto Investment</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Landing Section -->
+    <div class="landing-container">
+        <img src="images/trump-elon-holding-hands.jpg" alt="Trump and Elon Holding Hands" class="main-image">
+        <h1>Welcome to Trump & Elon Crypto Investment</h1>
+        <p>Join our investment platform for exclusive access!</p>
+
+        <!-- Registration Form Section -->
+        <div id="registration-form">
+            <h2>Sign Up to Access Content</h2>
+            <form id="registerForm">
+                <input type="email" placeholder="Email" id="email" required>
+                <input type="password" placeholder="Password" id="password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Login Form Section (Initially Hidden) -->
+        <div id="login-form" style="display: none;">
+            <h2>Login to Access Content</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="Email" id="loginEmail" required>
+                <input type="password" placeholder="Password" id="loginPassword" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Content After Login (Initially Hidden) -->
+    <div id="after-signup" class="hidden">
+        <section id="crypto-ticker" class="ticker">
+            <div id="ticker-text">Loading Crypto Prices...</div>
+        </section>
+
+        <section id="main-videos">
+            <h2>Exclusive Content</h2>
+            <video src="videos/video1.mp4" autoplay loop muted width="400"></video>
+            <video src="videos/video2.mp4" autoplay loop muted width="400"></video>
+        </section>
+
+        <!-- Portfolio Section with Random Profiles -->
+        <section id="portfolio-section">
+            <h2>Top Investors' Portfolios</h2>
+            <div class="portfolio">
+                <p><strong>Loading...</strong>: +0% Profit</p>
+            </div>
+            <div class="portfolio">
+                <p><strong>Loading...</strong>: +0% Profit</p>
+            </div>
+            <div class="portfolio">
+                <p><strong>Loading...</strong>: +0% Profit</p>
+            </div>
+        </section>
+
+        <!-- Invest Now Button Linked to Live Chat -->
+        <section id="invest-now">
+            <button onclick="handleInvestNow()">Invest Now</button>
+        </section>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <p>At Trump & Elon Crypto Investment, we believe in the future of cryptocurrency...</p>
+        </section>
+
+        <section id="policies">
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us...</p>
+        </section>
+
+        <footer>
+            <p>Follow us on:</p>
+            <a href="https://vm.tiktok.com/ZMhbqW2KM/" target="_blank">
+                <img src="images/tiktok-icon.png" alt="TikTok" style="width: 30px; height: 30px;">
+            </a>
+            <p><strong>Text us on Signal:</strong> <a href="https://signal.me/#p/+15757883314">+1 575 788 3314</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@trumpeloncrypto.com">info@trumpeloncrypto.com</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {};
+        Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/672f04e22480f5b4f59b11e0/1ic7qm639';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+
+        // Random Portfolio Names
+        const portfolioData = [
+            { name: 'Alex Morgan', profit: '+120%' },
+            { name: 'Chris Brown', profit: '+150%' },
+            { name: 'Sara Lee', profit: '+200%' },
+            { name: 'John Doe', profit: '+95%' },
+            { name: 'Jane Smith', profit: '+180%' }
+        ];
+
+        // Update Portfolio with Random Names and Profits
+        function updatePortfolio() {
+            const portfolioElements = document.querySelectorAll('.portfolio');
+            portfolioElements.forEach(element => {
+                const randomIndex = Math.floor(Math.random() * portfolioData.length);
+                const randomPerson = portfolioData[randomIndex];
+                element.innerHTML = `<p><strong>${randomPerson.name}</strong>: ${randomPerson.profit}</p>`;
+            });
+        }
+
+        // Update Portfolio every 3 seconds
+        setInterval(updatePortfolio, 3000);
+
+        // Fetch Real-Time Crypto Prices
+        function fetchCryptoPrices() {
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,litecoin,dogecoin,polkadot,uniswap,binancecoin&vs_currencies=usd')
+            .then(response => response.json())
+            .then(data => {
+                const prices = `
+                    BTC: $${data.bitcoin.usd} | 
+                    ETH: $${data.ethereum.usd} | 
+                    SOL: $${data.solana.usd} | 
+                    XRP: $${data.ripple.usd} | 
+                    ADA: $${data.cardano.usd} | 
+                    LTC: $${data.litecoin.usd} | 
+                    DOGE: $${data.dogecoin.usd} | 
+                    DOT: $${data.polkadot.usd} | 
+                    UNI: $${data.uniswap.usd} | 
+                    BNB: $${data.binancecoin.usd}
+                `;
+                document.getElementById('ticker-text').innerText = 'Crypto Prices: ' + prices;
+            });
+        }
+
+        // Update Crypto Prices every 30 seconds
+        setInterval(fetchCryptoPrices, 30000);
+
+        // Handle "Invest Now" button click to show investor info and open live chat
+        function handleInvestNow() {
+            const randomIndex = Math.floor(Math.random() * portfolioData.length);
+            const randomInvestor = portfolioData[randomIndex];
+            alert(`Investor: ${randomInvestor.name}\nProfit: ${randomInvestor.profit}`);
+            window.location.href = 'https://embed.tawk.to/672f04e22480f5b4f59b11e0/1ic7qm639';
+        }
+    </script>
+</body>
+</html>
